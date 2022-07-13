@@ -17,11 +17,11 @@ public class QueryProcessor {
         } else if (query.contains("name")) {
            return "David";
         } else if(query.contains("which")) {
-            String numbers = query.substring(query.indexOf("largest:")+8);
+            String numbers = query.substring(query.indexOf("largest:")+9);
             String[] num = numbers.split(",");
             if(num.length < 2){ return "0";}
             Optional<Integer> max = Arrays.stream(num).map(Integer::parseInt).max(Integer::compareTo);
-            return max.get() + "";
+            return max.map(integer -> integer + "").orElse("0");
         } else{ // TODO extend the programm here
                 return "";
 
