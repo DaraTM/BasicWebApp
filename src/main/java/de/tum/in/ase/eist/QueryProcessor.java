@@ -2,6 +2,9 @@ package de.tum.in.ase.eist;
 
 import org.springframework.stereotype.Service;
 
+import java.util.Arrays;
+import java.util.Optional;
+
 @Service
 public class QueryProcessor {
 
@@ -17,8 +20,8 @@ public class QueryProcessor {
             String numbers = query.substring(query.indexOf("largest:")+8);
             String[] num = numbers.split(",");
             if(num.length < 2){ return "0";}
-            int max = Math.max(Integer.parseInt(num[0]),Integer.parseInt(num[1]));
-            return max + "";
+            Optional<Integer> max = Arrays.stream(num).map(Integer::parseInt).max(Integer::compareTo);
+            return max.get() + "";
         } else{ // TODO extend the programm here
                 return "";
 
